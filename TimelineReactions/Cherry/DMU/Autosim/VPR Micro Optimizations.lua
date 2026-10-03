@@ -7,6 +7,17 @@ local tbl =
 			data = 
 			{
 				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "3a8e5222-680e-9396-dbac-a2707e4020d2",
+			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
+			objectType = "folder",
+		},
+		
+		{
+			data = 
+			{
+				displayPath = "",
 				name = "store\\anyone\\dmu\\main",
 				uuid = "c93eaeae-104c-d4aa-90de-ac00c5836b7e",
 			},
@@ -1045,6 +1056,17 @@ local tbl =
 			data = 
 			{
 				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "4970679a-79cc-d296-09fd-33103d19be4a",
+			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
+			objectType = "folder",
+		},
+		
+		{
+			data = 
+			{
+				displayPath = "",
 				name = "store\\anyone\\dmu\\main",
 				uuid = "2ed9b8cc-73e7-4200-ef25-556ef6af38dc",
 			},
@@ -1054,6 +1076,17 @@ local tbl =
 	},
 	[39] = 
 	{
+		
+		{
+			data = 
+			{
+				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "e879bb3f-9629-ae9b-4779-119d9c78496f",
+			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
+			objectType = "folder",
+		},
 		
 		{
 			data = 
@@ -1700,15 +1733,12 @@ local tbl =
 		{
 			data = 
 			{
-				name = "[Autosim] VPR Hold Reawaken",
-				uuid = "4ad50d7e-3ff6-1a82-ac4b-9f27445b7569",
-				version = 2,
+				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "9755968a-d937-0f26-663e-1bd05665dd3a",
 			},
-			inheritedObjectUUID = "9163b670-2875-23f1-801b-e45ee5bd12f4",
-			inheritedOverwrites = 
-			{
-				enabled = false,
-			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
+			objectType = "folder",
 		},
 		
 		{
@@ -1738,6 +1768,17 @@ local tbl =
 	},
 	[77] = 
 	{
+		
+		{
+			data = 
+			{
+				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "67961f15-42da-e1e1-9307-543772e34645",
+			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
+			objectType = "folder",
+		},
 		
 		{
 			data = 
@@ -2648,6 +2689,17 @@ local tbl =
 			data = 
 			{
 				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "6adb6d2e-247d-8eaa-5854-899c5a784e5e",
+			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
+			objectType = "folder",
+		},
+		
+		{
+			data = 
+			{
+				displayPath = "",
 				name = "store\\anyone\\dmu\\main",
 				uuid = "92210bfa-257e-395e-8060-4a1ccb6a294a",
 			},
@@ -2989,6 +3041,17 @@ local tbl =
 	},
 	[171] = 
 	{
+		
+		{
+			data = 
+			{
+				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "1854d36e-2271-65ea-cc83-327045d2a79e",
+			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
+			objectType = "folder",
+		},
 		
 		{
 			data = 
@@ -3396,7 +3459,7 @@ local tbl =
 	{
 		"store\\anyone\\dmu\\main",
 		"Lj\\umad\\draws_na",
-		"Cherry\\DMU\\Autosim",
+		"Cherry\\DMU\\Autosim\\Autosim",
 	},
 	timelineName = "dmu",
 	version = "1.5.5",
