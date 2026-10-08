@@ -780,6 +780,17 @@ local tbl =
 			data = 
 			{
 				displayPath = "",
+				name = "Lj\\umad\\draws_na",
+				uuid = "d2289143-7d4f-31a7-0f93-aeadecdf84f3",
+			},
+			inheritanceRoot = "Lj\\umad\\draws_na",
+			objectType = "folder",
+		},
+		
+		{
+			data = 
+			{
+				displayPath = "",
 				name = "store\\anyone\\dmu\\main",
 				uuid = "85c2ac64-7e30-7278-2d61-72f635ba20f4",
 			},
@@ -1705,9 +1716,11 @@ local tbl =
 						},
 					},
 				},
+				enabled = false,
 				mechanicTime = 370.25754620621,
 				name = "[VPR] Dash In",
 				timelineIndex = 72,
+				timerOffset = 0.10000000149012,
 				uuid = "6d95edb8-dbc9-162c-bdc4-81df547237ca",
 				version = 2,
 			},
@@ -2259,6 +2272,40 @@ local tbl =
 			},
 			inheritanceRoot = "Lj\\umad\\draws_na",
 			objectType = "folder",
+		},
+		
+		{
+			data = 
+			{
+				name = "[Lj Draw] Limit Cut",
+				uuid = "bf97399f-99b0-a2d7-81cb-20bb2a4704c5",
+				version = 2,
+			},
+			inheritedObjectUUID = "f52ad783-1c20-fac5-a88d-4e3011155f67",
+			inheritedOverwrites = 
+			{
+				actions = 
+				{
+					
+					{
+						type = "add",
+						value = 
+						{
+							data = 
+							{
+								name = "ArgusDraws+",
+								uuid = "c4202741-ef02-455f-b057-5e184f5f1f8e",
+								version = 2.1,
+							},
+							inheritedObjectUUID = "d97edc60-87a7-17b0-9d09-9d6a5960cd72",
+							inheritedOverwrites = 
+							{
+								actionLua = "-- Green is safe from the OTHER numbered beams; your own bait still hits you.\n-- Fixed firing origins are predicted from the opening dash order. Hidden\n-- Kefkas need not have moved to those origins yet, so do not attach to them.\nlocal sources = data.ljUltimaBlasterSources\nlocal targets = data.ljUltimaBlasterTargets\nlocal channel = Argus2.getNextUnusedChannel(true)\nif channel == nil then\n    self.used = true\n    return\nend\n\nlocal state = { lines = {}, bySource = {}, remaining = 8, active = true }\ndata.ljLimitCutDraw = state\nfunction state.clear(draw)\n    if draw.base then\n        Argus.deleteTimedShape(draw.base)\n        draw.base = nil\n    end\n    for _, line in ipairs(draw.lines) do\n        if line.uuid then\n            Argus.deleteTimedShape(line.uuid)\n            line.uuid = nil\n        end\n    end\n    draw.active = false\nend\n\n-- Use one fixed plane just above the decorative floor. Terrain projection\n-- can change as scene models appear/disappear; keep it out of this draw.\n-- UI rendering remains behind characters, without a player cutout.\nlocal drawHeight = 0.15\nlocal surfaceFlags = Argus2.RenderFlags.FLAG_RENDER_UI\nlocal baseFlags = surfaceFlags | Argus2.RenderFlags.FLAG_OCCLUSION_BASE\nlocal dangerFlags = surfaceFlags | Argus2.RenderFlags.FLAG_OCCLUDE\nlocal safeDrawer = TensorCore.getCachedFlatDrawer(\n    0x6600FF00, 0x6600FF00, 0x6600FF00, 0xCC66FF66, 1.5, channel, baseFlags)\n\nlocal first = sources[1].position\nlocal second = sources[2].position\nlocal firstAngle = math.atan2(first.x - 100, first.z - 100)\nlocal delta = math.atan2(second.x - 100, second.z - 100) - firstAngle\nlocal step = math.atan2(math.sin(delta), math.cos(delta))\nlocal dx, dz = first.x - 100, first.z - 100\nlocal radius = math.sqrt(dx * dx + dz * dz)\n\nfor order = 1, 8 do\n    local angle = firstAngle - step * (order - 1)\n    local line = {\n        position = { x = 100 + math.sin(angle) * radius,\n                     y = drawHeight, z = 100 + math.cos(angle) * radius },\n        targetId = targets[order],\n        resolved = false,\n    }\n    state.lines[order] = line\n    state.bySource[sources[order].entityId] = line\n    if order ~= data.ljUltimaBlasterPlayerNumber then\n        local target = TensorCore.mGetEntity(line.targetId)\n        if not target then\n            state.clear(state)\n            self.used = true\n            return\n        end\n        -- ShapeDrawer has no fixed-world-origin + target-attachment overload.\n        -- Let Argus resolve the moving target every render frame; never re-aim\n        -- this shape on the slower TensorReactions update pulse.\n        line.uuid = Argus2.addTimedRectFilled(\n            10000, line.position.x, drawHeight, line.position.z,\n            100, 6, TensorCore.getHeadingToTarget(line.position, target.pos),\n            0x00000000, 0x00000000, 0x00000000,\n            0,              -- delay\n            nil,            -- fixed world source; no source entity attachment\n            line.targetId,  -- native target tracking\n            true,           -- keep the full beam length\n            0x00000000, 0, 0, 0, 0, -- invisible, flat blocker\n            false,          -- oldDraw\n            false,          -- doNotDetect: retain safe-jump detection\n            0, false,       -- no heading offset; allow native target aiming\n            dangerFlags, channel)\n        if not line.uuid then\n            state.clear(state)\n            self.used = true\n            return\n        end\n    end\nend\n\n-- These are fail-safe lifetimes, not hit predictions. Remove the safe base\n-- before any blocker can expire if a cast event is missed.\nstate.expiresAt = Now() + 9000\nstate.base = safeDrawer:addTimedCircle(\n    9000, 100, drawHeight, 100, 20, 0, false, true, baseFlags)\nif not state.base then state.clear(state) end\nself.used = true\n",
+							},
+						},
+					},
+				},
+			},
 		},
 	},
 	[102] = 
@@ -2870,6 +2917,17 @@ local tbl =
 			data = 
 			{
 				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "cc835b6d-fe90-1a59-de14-ca236e3b5b1d",
+			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
+			objectType = "folder",
+		},
+		
+		{
+			data = 
+			{
+				displayPath = "",
 				name = "store\\anyone\\dmu\\main",
 				uuid = "a8fd869f-4f58-9b13-2935-e6f91a7f46af",
 			},
@@ -2888,6 +2946,20 @@ local tbl =
 				uuid = "80893da4-6c7f-dd38-258b-fdf60ec25374",
 			},
 			inheritanceRoot = "store\\anyone\\dmu\\main",
+			objectType = "folder",
+		},
+	},
+	[161] = 
+	{
+		
+		{
+			data = 
+			{
+				displayPath = "",
+				name = "Lj\\umad\\draws_na",
+				uuid = "d34e99a4-0df7-c368-05cb-b7a2222483d4",
+			},
+			inheritanceRoot = "Lj\\umad\\draws_na",
 			objectType = "folder",
 		},
 	},
@@ -3452,6 +3524,20 @@ local tbl =
 				uuid = "631f8528-ad46-441c-e6bd-74dafa0a4af8",
 			},
 			inheritanceRoot = "Lj\\umad\\draws_na",
+			objectType = "folder",
+		},
+	},
+	[227] = 
+	{
+		
+		{
+			data = 
+			{
+				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "bd99add0-b5c7-aa2c-c27a-895abaaade40",
+			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
 			objectType = "folder",
 		},
 	},
