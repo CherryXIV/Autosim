@@ -568,7 +568,7 @@ local tbl =
 						data = 
 						{
 							aType = "Lua",
-							actionLua = "local acr = TensorCore.API.TensorACR\nlocal now = acr.getAutoSimTime()\nlocal rec = data.Cherry_AutoSimP4\nif not rec or now < rec.exdeathAt then\n    return   -- P4 not synced this pull\nend\n\n-- Kefka below 20% in the last 20s before Ultima Upsurge (934.7), when he goes\n-- untargetable: 0.3x until then. Kept in rec.phases so the P4 Sync GUI shows\n-- it and a re-align moves it with the rest of the schedule.\nlocal stop = 934.7 + rec.offset\nif now < stop then\n    local p = { phaseType = \"BossModifier\", startTime = now, endTime = stop, value = 0.3 }\n    p.id = acr.addAutoSimPhase(p.phaseType, p.startTime, p.endTime, p.value)\n    rec.phases[#rec.phases + 1] = p\n    d(string.format(\"P4 low HP 0.3x BossModifier %.2f - %.2f\", now, stop))\nend\n\nself.used = true\n",
+							actionLua = "local acr = TensorCore.API.TensorACR\nlocal now = acr.getAutoSimTime()\nlocal rec = data.Cherry_AutoSimP4\nif not rec or now < rec.exdeathAt then\n    return   -- P4 not synced this pull\nend\n\n-- Kefka below 20% in the last 20s before Ultima Upsurge (934.7), when he goes\n-- untargetable: 0.8x until then. Kept in rec.phases so the P4 Sync GUI shows\n-- it and a re-align moves it with the rest of the schedule.\nlocal stop = 934.7 + rec.offset\nif now < stop then\n    local p = { phaseType = \"BossModifier\", startTime = now, endTime = stop, value = 0.8 }\n    p.id = acr.addAutoSimPhase(p.phaseType, p.startTime, p.endTime, p.value)\n    rec.phases[#rec.phases + 1] = p\n    d(string.format(\"P4 low HP 0.8x BossModifier %.2f - %.2f\", now, stop))\nend\n\nself.used = true\n",
 							conditions = 
 							{
 								
@@ -577,7 +577,7 @@ local tbl =
 									true,
 								},
 							},
-							name = "BossModifier 0.3 until 934.7",
+							name = "BossModifier 0.8 until 934.7",
 							uuid = "685670f5-4194-8d38-ba00-daaa67d1ca87",
 							version = 2.1,
 						},
