@@ -3090,6 +3090,17 @@ local tbl =
 			data = 
 			{
 				displayPath = "",
+				name = "Cherry\\DMU\\Autosim\\Autosim",
+				uuid = "c56b84b1-40ee-cc7d-ba5f-aaebd77d35a1",
+			},
+			inheritanceRoot = "Cherry\\DMU\\Autosim\\Autosim",
+			objectType = "folder",
+		},
+		
+		{
+			data = 
+			{
+				displayPath = "",
 				name = "store\\anyone\\dmu\\main",
 				uuid = "4c665467-a772-191b-c45e-4e7dd786b9b7",
 			},

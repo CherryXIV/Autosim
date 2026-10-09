@@ -555,6 +555,82 @@ local tbl =
 			},
 		},
 	},
+	[169] = 
+	{
+		
+		{
+			data = 
+			{
+				actions = 
+				{
+					
+					{
+						data = 
+						{
+							aType = "Lua",
+							actionLua = "local acr = TensorCore.API.TensorACR\nlocal now = acr.getAutoSimTime()\nlocal rec = data.Cherry_AutoSimP4\nif not rec or now < rec.exdeathAt then\n    return   -- P4 not synced this pull\nend\n\n-- Kefka below 20% in the last 20s before Ultima Upsurge (934.7), when he goes\n-- untargetable: 0.3x until then. Kept in rec.phases so the P4 Sync GUI shows\n-- it and a re-align moves it with the rest of the schedule.\nlocal stop = 934.7 + rec.offset\nif now < stop then\n    local p = { phaseType = \"BossModifier\", startTime = now, endTime = stop, value = 0.3 }\n    p.id = acr.addAutoSimPhase(p.phaseType, p.startTime, p.endTime, p.value)\n    rec.phases[#rec.phases + 1] = p\n    d(string.format(\"P4 low HP 0.3x BossModifier %.2f - %.2f\", now, stop))\nend\n\nself.used = true\n",
+							conditions = 
+							{
+								
+								{
+									"fba03e90-d441-7eea-a4c8-79975ecb9b07",
+									true,
+								},
+							},
+							name = "BossModifier 0.3 until 934.7",
+							uuid = "685670f5-4194-8d38-ba00-daaa67d1ca87",
+							version = 2.1,
+						},
+					},
+				},
+				conditions = 
+				{
+					
+					{
+						data = 
+						{
+							category = "Party",
+							comparator = 2,
+							conditionType = 2,
+							hpValue = 19.99,
+							name = "Kefka < 20%",
+							partyTargetType = "Detection Target",
+							uuid = "2e0cdfdf-7a44-79a0-956c-7abd8c8cee1c",
+							version = 3,
+						},
+					},
+					
+					{
+						data = 
+						{
+							category = "Filter",
+							conditions = 
+							{
+								
+								{
+									"2e0cdfdf-7a44-79a0-956c-7abd8c8cee1c",
+									true,
+								},
+							},
+							filterTargetType = "ContentID",
+							name = "Kefka (7131)",
+							partyTargetContentID = 7131,
+							uuid = "fba03e90-d441-7eea-a4c8-79975ecb9b07",
+							version = 3,
+						},
+					},
+				},
+				mechanicTime = 934.65048710577,
+				name = "[AutoSim] P4 Low HP",
+				timeRange = true,
+				timelineIndex = 169,
+				timerEndOffset = -1,
+				timerStartOffset = -20,
+				uuid = "e130ef4c-0fca-fa5f-a111-cc30babed92d",
+				version = 2,
+			},
+		},
+	},
 	[171] = 
 	{
 		
